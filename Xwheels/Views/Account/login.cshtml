@@ -1,0 +1,57 @@
+﻿@model Xwheels.tbl_Admin
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/CustomeStylesheet/LoginStylesheet.css" rel="stylesheet" />
+</head>
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="login-wrapper">
+        <div class="login">
+            <div class="form col-md-5 col-sm-12">
+                <form class="login-form">
+                    <h1 class="text-center">Admin Login</h1>
+                    <br />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        @Html.EditorFor(model => model.Admin_email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email" } })
+                        @Html.ValidationMessageFor(model => model.Admin_email, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+
+                            @Html.EditorFor(model => model.Admin_password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password", @type = "Password" } })
+                            <span name="tick" id="tick" class="input-group-addon" style="cursor:pointer;"><i class="fa fa-eye "></i></span>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Admin_password, "", new { @class = "text-danger" })
+                    </div>
+
+                    <br />
+                    <button type="submit" value="Create">LOGIN</button>
+                    <div style="margin-top:15px;">
+                        @{
+                            if (ViewBag.myAdminLogin != null)
+                            {
+
+                                <div class="alert alert-danger alert-dismissible" id="alert">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    @ViewBag.myAdminLogin
+                                </div>
+                            }
+                        }
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/CustomScripts/login.js"></script>

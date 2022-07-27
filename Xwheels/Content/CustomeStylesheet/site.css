@@ -1,0 +1,143 @@
+﻿/*navbar css starts here*/
+.ads-wrapper{
+	
+   
+}
+.show-on-hover:hover > ul.dropdown-menu {
+	display: block;
+}
+.navbar {
+	margin-bottom: 0 !important;
+
+}
+.logo{
+	width:120px;
+	height:120px;
+	position:relative;
+	top:-50px;
+}
+select{
+	width:16.6%;
+}
+.card{
+	cursor:pointer;
+	padding:0;
+	width:24%;
+	margin-left:13px;
+	margin-bottom:13px;
+	box-shadow: 2px 0px 7px -2px rgba(0,0,0,0.75);
+	-webkit-box-shadow: 2px 0px 7px -2px rgba(0,0,0,0.75);
+	-moz-box-shadow: 2px 0px 7px -2px rgba(0,0,0,0.75);
+}
+.ad-details{
+	padding:20px;
+}
+.im{
+	background-color:#000;
+	text-align:center;
+	padding:5px 0;
+}
+.img{
+	width:80%;
+	
+}
+.avatar{
+	width:35px;
+	height:35px;
+}
+.avatar1{
+	width:50px;
+	height:50px;
+	
+}
+h1,h1,h3{
+	line-height:0.6;
+
+}
+.list-pad{
+	padding:10px 0px;
+}
+.list-pad:hover{
+	background-color:aqua;
+}
+a{
+	color:#000;
+}
+.sub-menu-wrapper{
+	padding:10px;
+}
+.sub-menu-wrapper li{
+	padding-left:10px;
+}
+/*Sell button css*/
+.txt{
+	position:absolute;
+	top:1.6rem;
+	left:3.5rem;
+}
+.navbar-brand {
+	height: 83px;
+	width: 120px;
+	float: left;
+	padding: 15px 15px;
+	font-size: 18px;
+	line-height: 20px;
+}
+
+/*navbar css ends here*/
+/*footer css starts here*/
+.footer-bs {
+	background-color: #ced4da;
+	padding: 60px 40px;
+	/*margin-top:20px;*/
+	color: #000;
+	margin-bottom: 20px;
+	border-bottom-right-radius: 6px;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 6px;
+	
+}
+.footer-bs .footer-brand, .footer-bs .footer-nav, .footer-bs .footer-social, .footer-bs .footer-ns { padding:10px 25px; }
+.footer-bs .footer-nav, .footer-bs .footer-social, .footer-bs .footer-ns { border-color: transparent; }
+.footer-bs .footer-brand h2 { margin:0px 0px 10px; }
+.footer-bs .footer-brand p { font-size:12px; color:rgba(255,255,255,0.10); }
+
+.footer-bs .footer-nav ul.pages { list-style:none; padding:0px; }
+.footer-bs .footer-nav ul.pages li { padding:5px 0px;}
+.footer-bs .footer-nav ul.pages a { color:rgba(255,255,255,1.00); font-weight:bold; text-transform:uppercase; }
+.footer-bs .footer-nav ul.pages a:hover { color:rgba(255,255,255,0.80); text-decoration:none; }
+.footer-bs .footer-nav h4 {
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	margin-bottom:10px;
+}
+
+.footer-bs .footer-nav ul.list { list-style:none; padding:0px; }
+.footer-bs .footer-nav ul.list li { padding:5px 0px;}
+.footer-bs .footer-nav ul.list a { color:rgba(255,255,255,0.80); }
+.footer-bs .footer-nav ul.list a:hover { color:rgba(255,255,255,0.60); text-decoration:none; }
+
+.footer-bs .footer-social ul { list-style:none; padding:0px; }
+.footer-bs .footer-social h4 {
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+}
+.footer-bs .footer-social li { padding:5px 4px;}
+.footer-bs .footer-social a { color:rgba(255,255,255,1.00);}
+.footer-bs .footer-social a:hover { color:rgba(255,255,255,0.80); text-decoration:none; }
+
+.footer-bs .footer-ns h4 {
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	margin-bottom:10px;
+}
+.footer-bs .footer-ns p { font-size:12px; color:rgba(255,255,255,0.70); }
+
+@media (min-width: 768px) {
+	.footer-bs .footer-nav, .footer-bs .footer-social, .footer-bs .footer-ns { border-left:solid 1px rgba(255,255,255,0.10); }
+}
+
+/*footer css ends here*/

@@ -1,0 +1,144 @@
+﻿@model IEnumerable<Xwheels.tbl_Category>
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<head>
+    <link href="~/Content/CustomeStylesheet/VehicleCategory/ListStyleSheet.css" rel="stylesheet" />
+</head>
+
+
+
+<h2 class="bg-gradient-olive p-2" style="border-radius:8px 8px 0px 0px;">Vehicle Categories</h2>
+
+<p class="create-cat">
+    @Html.ActionLink("Add Category", "Create","Vehicle",new { @class="btn btn-light text-success", @style="color:white;"})
+</p>
+<table class="table table-bordered table-hover bg-white text-center">
+    <tr>
+        <th class="col-md-6">
+            <label>Category</label>
+        </th>
+        <th class="col-md-6">
+            <label>Actions</label>
+        </th>
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category_name)
+        </td>
+        
+        <td class="text-center">
+           
+
+            @Html.ActionLink("Edit", "Edit", new { id = item.Category_id }, new { @class = "btn btn-warning" })
+
+            |
+
+            @Html.ActionLink("Delete", "Delete", new { id = item.Category_id }, new { @class = "btn btn-danger", onclick = "return confirmDel()" })
+        </td>
+    </tr>
+}
+
+</table>
+
+<div class="" style="padding:0 0 0 40%">
+    @{
+        double TotalPages = ViewBag.TotalPages;
+        if (TotalPages > 1)
+        {
+            <ul class="pagination">
+
+                @* /////////////////////////////Prevoius////////////////////////// *@
+
+
+                @if (ViewBag.PageNumber == 1)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("List","Vehicle", new { PageNumber= ViewBag.PageNumber})">Previous</a>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a class="page-link" href="@Url.Action("List","Vehicle", new { PageNumber= ViewBag.PageNumber - 1})">Previous</a>
+                    </li>
+                }
+
+                @* /////////////////////////////Pages////////////////////////// *@
+
+                @for (int i = 1; i <= TotalPages; i++)
+                {
+                    if (i == ViewBag.PageNumber)
+                    {
+                        <li class="page-item active">
+                            <a class="page-link" href="@Url.Action("List","Vehicle", new { PageNumber= i})">@i.ToString()</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="@Url.Action("List","Vehicle", new { PageNumber= i})">@i.ToString()</a>
+                        </li>
+                    }
+                }
+
+                @* /////////////////////////////Next////////////////////////// *@
+
+
+                @if (ViewBag.PageNumber == TotalPages)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("List","Vehicle", new { PageNumber= ViewBag.PageNumber})">Next</a>
+                    </li>
+
+                }
+                else
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("List","Vehicle", new { PageNumber= ViewBag.PageNumber + 1})">Next</a>
+                    </li>
+
+                }
+
+            </ul>
+        }
+
+
+    }
+
+</div>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+<script>
+    function confirmDel() {
+        return confirm("Are you sure, you want to delete this Vehicle Category?");
+    }
+</script>
+<script type="text/javascript">
+    //$(document).ready(function () {
+
+    //    $('#f1').click(function () {
+
+    //        var url = $('#myModal').data('url');
+    //        $.get(url, function (data) {
+
+    //            $('#myModal').html(data);
+    //            $('#myModal').modal('show');
+    //        });
+
+    //    });
+
+    //});
+</script>

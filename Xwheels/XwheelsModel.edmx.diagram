@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4f47358bcf33476885dbc83ba1fa82c4" Name="Diagram1" ZoomLevel="75">
+        <EntityTypeShape EntityType="XwheelsModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="XwheelsModel.tbl_Admin" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="XwheelsModel.tbl_Ads" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="XwheelsModel.tbl_Category" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="XwheelsModel.tbl_City" Width="1.5" PointX="3" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="XwheelsModel.tbl_Color" Width="1.5" PointX="3" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="XwheelsModel.tbl_Make" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="XwheelsModel.tbl_Model" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="XwheelsModel.tbl_Reg_city" Width="1.5" PointX="3" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="XwheelsModel.tbl_User" Width="1.5" PointX="3" PointY="24.25" IsExpanded="true" />
+        <AssociationConnector Association="XwheelsModel.FK_tbl_Ads_tbl_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="XwheelsModel.FK_tbl_Ads_tbl_City" ManuallyRouted="false" />
+        <AssociationConnector Association="XwheelsModel.FK_tbl_Ads_tbl_Color" ManuallyRouted="false" />
+        <AssociationConnector Association="XwheelsModel.FK_tbl_Ads_tbl_make" ManuallyRouted="false" />
+        <AssociationConnector Association="XwheelsModel.FK_tbl_Ads_tbl_Model" ManuallyRouted="false" />
+        <AssociationConnector Association="XwheelsModel.FK_tbl_Ads_tbl_Reg_city" ManuallyRouted="false" />
+        <AssociationConnector Association="XwheelsModel.FK_tbl_Ads_tbl_User" ManuallyRouted="false" />
+        <AssociationConnector Association="XwheelsModel.FK_tbl_Model_tbl_make" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="XwheelsModel.tbl_Year" Width="1.5" PointX="5.375" PointY="0.875" />
+        <AssociationConnector Association="XwheelsModel.FK_tbl_Ads_tbl_Year" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

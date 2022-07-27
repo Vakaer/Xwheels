@@ -1,0 +1,540 @@
+﻿@model Xwheels.tbl_Ads
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <link href="~/Content/CustomeStylesheet/PostAdStylesheet.css" rel="stylesheet" />
+</head>
+
+
+
+<div class="container wrapping-border outline " style="margin:4% auto;">
+
+    @if (ViewBag.EditAd != null)
+    {
+        <div class="well">
+            @ViewBag.EditAd;
+        </div>
+    }
+
+    <div class="col-md-12 bg-light">
+        <div class="main-heading border-bottom">
+            <h3 class="text-center"><strong>Edit an Ad</strong></h3>
+        </div>
+    </div>
+
+    @using (Html.BeginForm("Edit", "Try", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <!--//Basic details section starts here-->
+        <section class="basic-detail bb">
+            <div class="form-horizontal col-md-12 style=" padding:1.5rem !important"">
+                <br />
+                <h4 class="text-uppercase "><strong>Fill in the Details</strong></h4>
+                <br />
+                <div class="">
+                    <div class="">
+                        <div class="">
+
+                            <div class="form-group">
+                                <label for="make">Title:</label>
+                                @Html.EditorFor(model => model.Vehicle_title, new { htmlAttributes = new { @class = "form-control", onchange = "CheckImage()" } })
+                                @Html.ValidationMessageFor(model => model.Vehicle_title, "", new { @class = "text-danger", @id = "TitleErr" })
+                            </div>
+
+                            <div class="form-group">
+                                <label for="make">Make:</label>
+                                @*@Html.DropDownListFor(k => k.Make_id, ViewBag.Make as SelectList, "-- Select Make --", new { @class = "form-control col-md-12" })*@
+                                @Html.DropDownListFor(m => m.Make_id, Model.Make, "Select Make", new { @class = "form-control", @id = "Make_id", onchange = "CheckImage()" })
+                                @Html.ValidationMessageFor(model => model.Make_id, "", new { @class = "text-danger", @id = "MakeErr" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="make">Model:</label>
+                            @*@Html.DropDownListFor(m => m.Model_id, ViewBag.Model as SelectList, "-- Select Model --", new { @class = "form-control col-md-12" })*@
+                            @Html.DropDownListFor(m => m.Model_id, Model.Model, "Select Model", new { @class = "form-control", onchange = "CheckImage()" })
+                            @Html.ValidationMessageFor(model => model.Model_id, "", new { @class = "text-danger", @id = "ModelErr" })
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category">Category:</label>
+                            @Html.DropDownListFor(m => m.Category_id, Model.Category, "Select Category", htmlAttributes: new { @class = "form-control col-md-12", onchange = "CheckImage()" })
+                            @Html.ValidationMessageFor(model => model.Category_id, "", new { @class = "text-danger", @id = "CategoryErr" })
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="year">Year: </label>
+                            @Html.DropDownListFor(m => m.Year_id, Model.myYearr, "Select Year", htmlAttributes: new { @class = "form-control col-md-12", onchange = "CheckImage()" })
+                            @Html.ValidationMessageFor(model => model.Year_id, "", new { @class = "text-danger", @id = "YearErr" })
+                        </div>
+
+                        <div class="form-group">
+                            <label for="RegCity">Registration city: </label>
+                            @Html.DropDownListFor(m => m.Reg_city_id, Model.RegCity, "Select Registration City", htmlAttributes: new { @class = "form-control", onchange = "CheckImage()" })
+                            @Html.ValidationMessageFor(model => model.Reg_city_id, "", new { @class = "text-danger", @id = "RegCityErr" })
+                        </div>
+
+                        <div class="form-group">
+                            <label for="color">Color: </label>
+                            @Html.DropDownListFor(m => m.Color_id, Model.Color, "Select Color", htmlAttributes: new { @class = "form-control", onchange = "CheckImage()" })
+                            @Html.ValidationMessageFor(model => model.Color_id, "", new { @class = "text-danger", @id = "ColorErr" })
+                        </div>
+
+                        <div class="form-group">
+                            <label for="location">Location: </label>
+                            @Html.DropDownListFor(m => m.City_id, Model.City, "Select City", htmlAttributes: new { @class = "form-control", onchange = "CheckImage()" })
+                            @Html.ValidationMessageFor(model => model.City_id, "", new { @class = "text-danger", @id = "CityErr" })
+                        </div>
+
+                        <div class="form-group">
+                            <label for="price">Price:</label>
+                            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @type = "number", @class = "form-control", onchange = "CheckImage()" } })
+                            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger", @id = "PriceErr" })
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mileage">Mileage: </label>
+                            @Html.EditorFor(model => model.Mileage, new { htmlAttributes = new { @type = "number", @class = "form-control", onchange = "CheckImage()" } })
+                            @Html.ValidationMessageFor(model => model.Mileage, "", new { @class = "text-danger", @id = "MileageErr" })
+                        </div>
+
+                        <div class="form-group">
+                            <label for="desc">Description: </label>
+                            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", onchange = "CheckImage()" } })
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger", @id = "DescriptionErr" })
+                        </div>
+                    </div>
+
+                    @Html.HiddenFor(model => model.Vehicle_id)
+                    @Html.HiddenFor(model => model.User_id)
+                    @Html.HiddenFor(model => model.Status)
+                    @Html.HiddenFor(model => model.Image_Path_1)
+                    @Html.HiddenFor(model => model.Image_Path_2)
+                    @Html.HiddenFor(model => model.Image_Path_3)
+                    @Html.HiddenFor(model => model.Image_Path_4)
+                    @Html.HiddenFor(model => model.Image_Path_5)
+                    @Html.HiddenFor(model => model.Image_Path_6)
+
+                </div>
+
+            </div>
+
+        </section>
+            <!--//Basic details section ends here-->
+
+
+
+            <!--//Image Section starts-->
+
+            <section class="images bb">
+                <div class="form-horizontal col-md-12" style="padding:1.5rem !important;">
+
+                    <h4 class="text-uppercase"><strong>Upload uptop 5 images <span id="imageError" class="text-danger">(@ViewBag.ImageOne)</span></strong></h4><br />
+                    <div class="col-md-12 ">
+                        <div class="row" style="margin-bottom:20px;">
+                            <div class="col-md-12">
+
+                                <div class="col-sm-6 col-md-4 mb-2 sub-image">
+                                    <input type="file" class="hidden" id="fileUpload1" accept="image/*" name="UserImageFile[0]" />
+                                    @*remove icon*@
+                                    <div style="position:absolute; left:6%;" class="border pd-1 remove-photo" id="remove1">
+                                        <span class="fa fa-remove"></span>
+                                    </div>
+                                    <div class="u-img-1 dimensions" id="u-img-1">
+                                        <img src="@Url.Content(Model.Image_Path_1)" id="UserImage1" class="" height="235px" width="235px" />
+                                    </div>
+
+
+                                </div>
+
+                                <div class="col-sm-6 col-md-4 mb-2 sub-image">
+                                    <input type="file" class="hidden" id="fileUpload2" accept="image/*" name="UserImageFile[1]" />
+                                    @*remove icon*@
+                                    <div style="position:absolute; left:6%;" class="border pd-1 remove-photo" id="remove2">
+                                        <span class="fa fa-remove"></span>
+                                    </div>
+                                    <div class="u-img-2" id="u-img-2">
+                                        <img src="@Url.Content(Model.Image_Path_2)" id="UserImage" class="" height="235px" width="235px" />
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 col-md-4 mb-2 sub-image">
+                                    <input type="file" class="hidden" id="fileUpload3" accept="image/*" name="UserImageFile[2]" />
+                                    @*remove icon*@
+                                    <div style="position:absolute; left:6%;" class="border pd-1 remove-photo" id="remove3">
+                                        <span class="fa fa-remove"></span>
+                                    </div>
+                                    <div class="u-img-3" id="u-img-3">
+                                        <img src="@Url.Content(Model.Image_Path_3)" id="UserImage" class="" height="235px" width="235px" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 ">
+                                <div class="col-sm-6 col-md-4 mb-2 sub-image ">
+                                    <input type="file" class="hidden" id="fileUpload4" accept="image/*" name="UserImageFile[3]" />
+                                    @*remove icon*@
+                                    <div style="position:absolute; left:6%;" class="border pd-1 remove-photo" id="remove4">
+                                        <span class="fa fa-remove"></span>
+                                    </div>
+                                    <div class="u-img-4" id="u-img-4">
+                                        <img src="@Url.Content(Model.Image_Path_4)" id="UserImage" class="" height="235px" width="235px" />
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 col-md-4 sub-image">
+                                    <input type="file" class="hidden" id="fileUpload5" accept="image/*" name="UserImageFile[4]" />
+                                    @*remove icon*@
+                                    <div style="position:absolute; left:6%;" class="border pd-1 remove-photo" id="remove5">
+                                        <span class="fa fa-remove"></span>
+                                    </div>
+                                    <div class="u-img-5" id="u-img-5">
+                                        <img src="@Url.Content(Model.Image_Path_5)" id="UserImage" class="" height="235px" width="235px" />
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 col-md-4 mb-2 sub-image">
+                                    <input type="file" class="hidden" id="fileUpload6" accept="image/*" name="UserImageFile[5]" />
+                                    @*remove icon*@
+                                    <div style="position:absolute; left:6%;" class="border pd-1 remove-photo" id="remove6">
+                                        <span class="fa fa-remove"></span>
+                                    </div>
+                                    <div class="u-img-6" id="u-img-6">
+                                        <img src="@Url.Content(Model.Image_Path_6)" id="UserImage" class="" height="235px" width="235px" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                    </div>
+
+                </div>
+
+
+            </section><br /><br />
+
+
+
+
+            <!--//Image Section Ends-->
+
+
+            <!--//Submit Section Starts-->
+            <section class="">
+                <button type="submit" class="btn btn-success btn-block" onclick="return CheckImage()" id="saveChanges">Save changes</button>
+
+            </section>
+            <br />
+            <!--//Submit Section Ends-->
+
+
+    }
+</div>
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+@*<script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
+<script>
+    $(document).ready(function () {
+
+        $("#Make_id").change(function () {
+            var Mid = $(this).val();
+            debugger
+            $.ajax({
+                type: "post",
+                url: "/Try/GetModelList?Make_id=" + Mid,
+                contentType: "html",
+                success: function (response) {
+                    debugger
+                    $("#Model_id").empty();
+                    $("#Model_id").append(response);
+                }
+            })
+        })
+    })
+
+
+    //Checking user upload one image atleast
+
+
+    function CheckImage() {
+
+        /*
+            Input fields validating
+        */
+
+
+        inputcheck("#Vehicle_title", "TitleErr", "Please Enter Title", /^([a-zA-Z0-9 _-]+)$/);
+        numbercheck("#Price", "PriceErr", "Please Enter Price");
+        numbercheck("#Mileage", "MileageErr", "Please Enter Mileage");
+        inputcheck("#Description", "DescriptionErr", "Please Enter Description", "^([a-z A-Z 0-9 \.\&\'\-]+)$");
+
+
+
+        //title ends
+
+        /*
+            Client side validating all dropdown lists
+        */
+
+        dropcheck("#Make_id option:selected", "Select Make", "MakeErr", "Please select Make");
+        dropcheck("#Model_id option:selected", "Select Model", "ModelErr", "Please Select Model");
+        dropcheck("#Category_id option:selected", "Select Category", "CategoryErr", "Please Select Category");
+        dropcheck("#Year_id option:selected", "Select Year", "YearErr", "Please Select Year");
+        dropcheck("#Reg_city_id option:selected", "Select Registration City", "RegCityErr", "Please Select Registered City");
+        dropcheck("#Color_id option:selected", "Select Color", "ColorErr", "Please Select Color");
+        dropcheck("#City_id option:selected", "Select City", "CityErr", "Please Select Located City");
+
+
+
+
+        //image first
+        var check = $("#UserImage1").attr('src');
+        if (check == "/Content/images/download.png") {
+
+            document.getElementById('imageError').innerHTML = "Please upload minimum one image";
+        }
+        else {
+
+            document.getElementById('imageError').innerHTML = "";
+
+        }
+
+        /*
+            Checking count
+        */
+
+        if ($("#TitleErr").html() == "" && $("#MakeErr").html() == "" && $("#ModelErr").html() == "" && $("#CategoryErr").html() == ""
+                && $("#YearErr").text() == "" && $("#RegCityErr").html() == "" && $("#ColorErr").html() == "" && $("#CityErr").html() == ""
+                && $("#PriceErr").text() == "" && $("#MileageErr").text() == "" && $("#DescriptionErr").text() == ""
+                && $("#imageError").text() == "") {
+            return true
+        }
+        else {
+            return false;
+        }
+
+    }
+
+    /*
+        This function validates all dropdown lists
+    */
+    function dropcheck(selector, defaultText, ErrID, ErrMsg, count) {
+        var make = $(selector); //alert(make.text());
+        if (make.text() == defaultText) {
+            document.getElementById(ErrID).innerHTML = ErrMsg;
+
+        }
+        else {
+            document.getElementById(ErrID).innerHTML = "";
+        }
+    }
+
+    /*
+       This function validates all character Input fields
+   */
+
+    function inputcheck(selector, ErrID, ErrMsg) {
+        var title = $(selector);
+
+        if (title.val() == null || title.val() == undefined || title.val() == "") {
+
+            document.getElementById(ErrID).innerHTML = ErrMsg; //alert(title.val());
+            return;
+
+        }
+        else {
+            document.getElementById(ErrID).innerHTML = "";
+        }
+    }
+
+    /*
+       This function validates all number Input fields
+   */
+
+    function numbercheck(selector, ErrID, ErrMsg) {
+        var title = $(selector);
+
+        if (title.val() == null || title.val() == undefined || title.val() == "") {
+
+            document.getElementById(ErrID).innerHTML = ErrMsg; //alert(title.val());
+            return;
+
+        }
+
+        if (title.val() < 0) {
+            document.getElementById(ErrID).innerHTML = "Input can't be negative";
+            return;
+        }
+        else {
+            document.getElementById(ErrID).innerHTML = "";
+        }
+    }
+
+
+    //open browse image popup on window
+    $('#u-img-1, #u-img-2, #u-img-3, #u-img-4, #u-img-5, #u-img-6').click(function () {
+
+        var openn = $(this).attr('id');
+        var fileOpen;
+
+        // conditions for opening different files
+        if (openn == 'u-img-1') {
+            fileOpen = '#fileUpload1';
+
+        } else if (openn == 'u-img-2') {
+            fileOpen = '#fileUpload2';
+
+        } else if (openn == 'u-img-3') {
+            fileOpen = '#fileUpload3';
+
+        } else if (openn == 'u-img-4') {
+            fileOpen = '#fileUpload4';
+
+        } else if (openn == 'u-img-5') {
+            fileOpen = '#fileUpload5';
+
+        } else if (openn == 'u-img-6') {
+            fileOpen = '#fileUpload6';
+
+        }
+
+        //Triggering respective file tag
+        $(fileOpen).trigger('click');
+
+    });
+
+
+
+
+    //select and upload
+    $('#fileUpload1, #fileUpload2, #fileUpload3, #fileUpload4, #fileUpload5, #fileUpload6').change(function () {
+
+        name = '.u-img-1 img';
+
+        var input = $(this).attr('id');
+        //var input = $('#fileUpload2').data('clicked');
+
+
+        if (input == 'fileUpload1') {
+            name = '.u-img-1 img';
+
+        } else if (input == 'fileUpload2') {
+            name = '.u-img-2 img';
+
+        } else if (input == 'fileUpload3') {
+            name = '.u-img-3 img';
+
+        } else if (input == 'fileUpload4') {
+            name = '.u-img-4 img';
+
+        } else if (input == 'fileUpload5') {
+            name = '.u-img-5 img';
+
+        } else if (input == 'fileUpload6') {
+            name = '.u-img-6 img';
+
+        }
+        // Preview images
+        var File = this.files;
+
+        if (File && File[0]) {
+
+            var fileReader = new FileReader();
+            fileReader.readAsDataURL(File[0]);
+
+            fileReader.onload = function (x) {
+
+                var image = new Image();
+                image.src = x.target.result;
+
+                image.onload = function () {
+
+                    var width = this.width;
+                    var height = this.height;
+                    var type = File[0].type;
+                    // alert(width + " x " + height + " type: " + type);
+
+                    if ((type == 'image/png' || type == 'image/jpg' || type == 'image/jpeg')) {
+
+                        $('.upload-image-1 img').attr('src', x.target.result);
+                        $(name).attr('src', x.target.result);
+
+                        CheckImage();
+                    } else {
+                        alert("Image must be type of png, jpg and jpeg");
+                    }
+
+                }
+
+
+
+
+            }
+        }
+
+    });
+
+    // remove picture
+    $('#remove1, #remove2, #remove3, #remove4, #remove5, #remove6').click(function () {
+
+        var rem = $(this).attr('id');
+        var img;
+
+        if (rem == 'remove1') {
+            img = '.u-img-1 img';
+            $('#Image_Path_1').val('~/Content/images/download.png');
+
+        } else if (rem == 'remove2') {
+            img = '.u-img-2 img';
+            $('#Image_Path_2').val('~/Content/images/download.png');
+
+
+        } else if (rem == 'remove3') {
+            img = '.u-img-3 img';
+            $('#Image_Path_3').val('~/Content/images/download.png');
+
+
+        } else if (rem == 'remove4') {
+            img = '.u-img-4 img';
+            $('#Image_Path_4').val('~/Content/images/download.png');
+
+
+        } else if (rem == 'remove5') {
+            img = '.u-img-5 img';
+            $('#Image_Path_5').val('~/Content/images/download.png');
+
+
+        } else if (rem == 'remove6') {
+            img = '.u-img-6 img';
+            $('#Image_Path_6').val('~/Content/images/download.png');
+
+
+        }
+
+        //change image
+        $(img).attr('src', '/Content/images/download.png');
+
+
+
+    });
+</script>
+
+<script src="~/Scripts/CustomScripts/PostAd.js"></script>
+

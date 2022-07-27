@@ -1,0 +1,144 @@
+﻿@model IEnumerable<Xwheels.tbl_User>
+
+@{
+    ViewBag.Title = "RegisterRequest";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<head>
+    <link href="~/Content/CustomeStylesheet/RegisterRequest.css" rel="stylesheet" />
+</head>
+
+<h2 class="bg-gradient-olive p-2" style="border-radius:8px 8px 0px 0px;">Registration requests</h2>
+
+<div class="create-cat">
+    <div class="dropdown" style="z-index:1; position:static">
+        <button type="button" class="btn btn-light text-success dropdown-toggle" data-toggle="dropdown">
+            Request Filter
+        </button>
+        <div class="dropdown-menu">
+            <a class="dropdown-item " href="@Url.Action("RegisterRequest","Account", new { myFilter="All"})">All Requests</a>
+            <a class="dropdown-item " href="@Url.Action("RegisterRequest","Account", new { myFilter="Approved"})">Approved Requests</a>
+            <a class="dropdown-item" href="@Url.Action("RegisterRequest","Account", new { myFilter="Pending"})">Pending Requests</a>
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm("RegisterRequest", "Account", FormMethod.Post))
+{
+    <table class="table table-bordered table-striped text-center">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Username)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Contact)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.User_active)
+                </th>
+                <th>
+                    Approve or Decline
+                </th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*@Html.HiddenFor(modelItem => item.User_id)*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+               
+                <td>
+                    @Html.DisplayFor(modelItem => item.Contact)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.User_active)
+                </td>
+                <td>
+                    <button class="btn btn-success" name="request" value="@item.User_id">Approve</button> |
+                    <button class="btn btn-danger" name="decline" value="@item.User_id">Decline</button>
+
+                    
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    <div class="" style="padding:0 0 0 40%">
+        @{
+            double TotalPages = ViewBag.TotalPages;
+            if (TotalPages > 1)
+            {
+                <ul class="pagination">
+
+                    @* /////////////////////////////Prevoius////////////////////////// *@
+
+
+                    @if (ViewBag.PageNumber == 1)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="@Url.Action("RegisterRequest","Account", new { PageNumber= ViewBag.PageNumber})">Previous</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a class="page-link" href="@Url.Action("RegisterRequest","Account", new { PageNumber= ViewBag.PageNumber - 1})">Previous</a>
+                        </li>
+                    }
+
+                    @* /////////////////////////////Pages////////////////////////// *@
+
+                    @for (int i = 1; i <= TotalPages; i++)
+                    {
+                        if (i == ViewBag.PageNumber)
+                        {
+                            <li class="page-item active">
+                                <a class="page-link" href="@Url.Action("RegisterRequest","Account", new { PageNumber= i})">@i.ToString()</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="@Url.Action("RegisterRequest","Account", new { PageNumber= i})">@i.ToString()</a>
+                            </li>
+                        }
+                    }
+
+                    @* /////////////////////////////Next////////////////////////// *@
+
+
+                    @if (ViewBag.PageNumber == TotalPages)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="@Url.Action("RegisterRequest","Account", new { PageNumber= ViewBag.PageNumber})">Next</a>
+                        </li>
+
+                    }
+                    else
+                    {
+                        <li class="page-item">
+                                <a class="page-link" href="@Url.Action("RegisterRequest","Account", new { PageNumber= ViewBag.PageNumber + 1})">Next</a>
+                            </li>
+
+                    }
+
+                </ul>
+            }
+
+
+        }
+
+    </div>
+            }
+

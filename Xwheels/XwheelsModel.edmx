@@ -1,0 +1,705 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="XwheelsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tbl_Admin">
+          <Key>
+            <PropertyRef Name="Admin_id" />
+          </Key>
+          <Property Name="Admin_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Admin_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Admin_email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Admin_password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Admin_role" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_Ads">
+          <Key>
+            <PropertyRef Name="Vehicle_id" />
+          </Key>
+          <Property Name="Vehicle_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Make_id" Type="int" />
+          <Property Name="Model_id" Type="int" />
+          <Property Name="Category_id" Type="int" />
+          <Property Name="Reg_city_id" Type="int" />
+          <Property Name="Color_id" Type="int" />
+          <Property Name="City_id" Type="int" />
+          <Property Name="Price" Type="money" />
+          <Property Name="Mileage" Type="nvarchar" MaxLength="10" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Status" Type="varchar" MaxLength="10" />
+          <Property Name="User_id" Type="int" />
+          <Property Name="Image_Path_1" Type="nvarchar(max)" />
+          <Property Name="Image_Path_2" Type="nvarchar(max)" />
+          <Property Name="Image_Path_3" Type="nvarchar(max)" />
+          <Property Name="Image_Path_4" Type="nvarchar(max)" />
+          <Property Name="Image_Path_5" Type="nvarchar(max)" />
+          <Property Name="Image_Path_6" Type="nvarchar(max)" />
+          <Property Name="Year_id" Type="int" />
+          <Property Name="Vehicle_title" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_Category">
+          <Key>
+            <PropertyRef Name="Category_id" />
+          </Key>
+          <Property Name="Category_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category_name" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tbl_City">
+          <Key>
+            <PropertyRef Name="City_id" />
+          </Key>
+          <Property Name="City_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="City_name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_Color">
+          <Key>
+            <PropertyRef Name="Color_id" />
+          </Key>
+          <Property Name="Color_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Color_name" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tbl_Make">
+          <Key>
+            <PropertyRef Name="Make_id" />
+          </Key>
+          <Property Name="Make_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Make_name" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tbl_Model">
+          <Key>
+            <PropertyRef Name="Model_id" />
+          </Key>
+          <Property Name="Model_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Model_name" Type="nvarchar" MaxLength="20" />
+          <Property Name="Make_id" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Reg_city">
+          <Key>
+            <PropertyRef Name="Reg_city_id" />
+          </Key>
+          <Property Name="Reg_city_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Reg_city_name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_User">
+          <Key>
+            <PropertyRef Name="User_id" />
+          </Key>
+          <Property Name="User_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Contact" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="User_active" Type="varchar" MaxLength="10" />
+          <Property Name="User_role" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_Year">
+          <Key>
+            <PropertyRef Name="Year_id" />
+          </Key>
+          <Property Name="Year_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Year_digits" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_tbl_Ads_tbl_Category">
+          <End Role="tbl_Category" Type="Self.tbl_Category" Multiplicity="0..1" />
+          <End Role="tbl_Ads" Type="Self.tbl_Ads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Category">
+              <PropertyRef Name="Category_id" />
+            </Principal>
+            <Dependent Role="tbl_Ads">
+              <PropertyRef Name="Category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Ads_tbl_City">
+          <End Role="tbl_City" Type="Self.tbl_City" Multiplicity="0..1" />
+          <End Role="tbl_Ads" Type="Self.tbl_Ads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_City">
+              <PropertyRef Name="City_id" />
+            </Principal>
+            <Dependent Role="tbl_Ads">
+              <PropertyRef Name="City_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Ads_tbl_Color">
+          <End Role="tbl_Color" Type="Self.tbl_Color" Multiplicity="0..1" />
+          <End Role="tbl_Ads" Type="Self.tbl_Ads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Color">
+              <PropertyRef Name="Color_id" />
+            </Principal>
+            <Dependent Role="tbl_Ads">
+              <PropertyRef Name="Color_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Ads_tbl_make">
+          <End Role="tbl_Make" Type="Self.tbl_Make" Multiplicity="0..1" />
+          <End Role="tbl_Ads" Type="Self.tbl_Ads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Make">
+              <PropertyRef Name="Make_id" />
+            </Principal>
+            <Dependent Role="tbl_Ads">
+              <PropertyRef Name="Make_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Ads_tbl_Model">
+          <End Role="tbl_Model" Type="Self.tbl_Model" Multiplicity="0..1" />
+          <End Role="tbl_Ads" Type="Self.tbl_Ads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Model">
+              <PropertyRef Name="Model_id" />
+            </Principal>
+            <Dependent Role="tbl_Ads">
+              <PropertyRef Name="Model_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Ads_tbl_Reg_city">
+          <End Role="tbl_Reg_city" Type="Self.tbl_Reg_city" Multiplicity="0..1" />
+          <End Role="tbl_Ads" Type="Self.tbl_Ads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Reg_city">
+              <PropertyRef Name="Reg_city_id" />
+            </Principal>
+            <Dependent Role="tbl_Ads">
+              <PropertyRef Name="Reg_city_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Ads_tbl_User1">
+          <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1" />
+          <End Role="tbl_Ads" Type="Self.tbl_Ads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_User">
+              <PropertyRef Name="User_id" />
+            </Principal>
+            <Dependent Role="tbl_Ads">
+              <PropertyRef Name="User_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Ads_tbl_Year">
+          <End Role="tbl_Year" Type="Self.tbl_Year" Multiplicity="0..1" />
+          <End Role="tbl_Ads" Type="Self.tbl_Ads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Year">
+              <PropertyRef Name="Year_id" />
+            </Principal>
+            <Dependent Role="tbl_Ads">
+              <PropertyRef Name="Year_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Model_tbl_make">
+          <End Role="tbl_Make" Type="Self.tbl_Make" Multiplicity="0..1" />
+          <End Role="tbl_Model" Type="Self.tbl_Model" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Make">
+              <PropertyRef Name="Make_id" />
+            </Principal>
+            <Dependent Role="tbl_Model">
+              <PropertyRef Name="Make_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="XwheelsModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Admin" EntityType="Self.tbl_Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Ads" EntityType="Self.tbl_Ads" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Category" EntityType="Self.tbl_Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_City" EntityType="Self.tbl_City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Color" EntityType="Self.tbl_Color" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Make" EntityType="Self.tbl_Make" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Model" EntityType="Self.tbl_Model" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Reg_city" EntityType="Self.tbl_Reg_city" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_User" EntityType="Self.tbl_User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Year" EntityType="Self.tbl_Year" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tbl_Ads_tbl_Category" Association="Self.FK_tbl_Ads_tbl_Category">
+            <End Role="tbl_Category" EntitySet="tbl_Category" />
+            <End Role="tbl_Ads" EntitySet="tbl_Ads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Ads_tbl_City" Association="Self.FK_tbl_Ads_tbl_City">
+            <End Role="tbl_City" EntitySet="tbl_City" />
+            <End Role="tbl_Ads" EntitySet="tbl_Ads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Ads_tbl_Color" Association="Self.FK_tbl_Ads_tbl_Color">
+            <End Role="tbl_Color" EntitySet="tbl_Color" />
+            <End Role="tbl_Ads" EntitySet="tbl_Ads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Ads_tbl_make" Association="Self.FK_tbl_Ads_tbl_make">
+            <End Role="tbl_Make" EntitySet="tbl_Make" />
+            <End Role="tbl_Ads" EntitySet="tbl_Ads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Ads_tbl_Model" Association="Self.FK_tbl_Ads_tbl_Model">
+            <End Role="tbl_Model" EntitySet="tbl_Model" />
+            <End Role="tbl_Ads" EntitySet="tbl_Ads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Ads_tbl_Reg_city" Association="Self.FK_tbl_Ads_tbl_Reg_city">
+            <End Role="tbl_Reg_city" EntitySet="tbl_Reg_city" />
+            <End Role="tbl_Ads" EntitySet="tbl_Ads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Ads_tbl_User1" Association="Self.FK_tbl_Ads_tbl_User1">
+            <End Role="tbl_User" EntitySet="tbl_User" />
+            <End Role="tbl_Ads" EntitySet="tbl_Ads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Ads_tbl_Year" Association="Self.FK_tbl_Ads_tbl_Year">
+            <End Role="tbl_Year" EntitySet="tbl_Year" />
+            <End Role="tbl_Ads" EntitySet="tbl_Ads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Model_tbl_make" Association="Self.FK_tbl_Model_tbl_make">
+            <End Role="tbl_Make" EntitySet="tbl_Make" />
+            <End Role="tbl_Model" EntitySet="tbl_Model" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="XwheelsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tbl_Admin">
+          <Key>
+            <PropertyRef Name="Admin_id" />
+          </Key>
+          <Property Name="Admin_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Admin_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Admin_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Admin_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Admin_role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_Ads">
+          <Key>
+            <PropertyRef Name="Vehicle_id" />
+          </Key>
+          <Property Name="Vehicle_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Make_id" Type="Int32" />
+          <Property Name="Model_id" Type="Int32" />
+          <Property Name="Category_id" Type="Int32" />
+          <Property Name="Reg_city_id" Type="Int32" />
+          <Property Name="Color_id" Type="Int32" />
+          <Property Name="City_id" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Mileage" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="User_id" Type="Int32" />
+          <NavigationProperty Name="tbl_Category" Relationship="Self.FK_tbl_Ads_tbl_Category" FromRole="tbl_Ads" ToRole="tbl_Category" />
+          <NavigationProperty Name="tbl_City" Relationship="Self.FK_tbl_Ads_tbl_City" FromRole="tbl_Ads" ToRole="tbl_City" />
+          <NavigationProperty Name="tbl_Color" Relationship="Self.FK_tbl_Ads_tbl_Color" FromRole="tbl_Ads" ToRole="tbl_Color" />
+          <NavigationProperty Name="tbl_Make" Relationship="Self.FK_tbl_Ads_tbl_make" FromRole="tbl_Ads" ToRole="tbl_Make" />
+          <NavigationProperty Name="tbl_Model" Relationship="Self.FK_tbl_Ads_tbl_Model" FromRole="tbl_Ads" ToRole="tbl_Model" />
+          <NavigationProperty Name="tbl_Reg_city" Relationship="Self.FK_tbl_Ads_tbl_Reg_city" FromRole="tbl_Ads" ToRole="tbl_Reg_city" />
+          <NavigationProperty Name="tbl_User" Relationship="Self.FK_tbl_Ads_tbl_User" FromRole="tbl_Ads" ToRole="tbl_User" />
+          <Property Name="Image_Path_1" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Image_Path_2" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Image_Path_3" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Image_Path_4" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Image_Path_5" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Image_Path_6" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Year_id" Type="Int32" />
+          <NavigationProperty Name="tbl_Year" Relationship="XwheelsModel.FK_tbl_Ads_tbl_Year" FromRole="tbl_Ads" ToRole="tbl_Year" />
+          <Property Name="Vehicle_title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_Category">
+          <Key>
+            <PropertyRef Name="Category_id" />
+          </Key>
+          <Property Name="Category_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Ads" Relationship="Self.FK_tbl_Ads_tbl_Category" FromRole="tbl_Category" ToRole="tbl_Ads" />
+        </EntityType>
+        <EntityType Name="tbl_City">
+          <Key>
+            <PropertyRef Name="City_id" />
+          </Key>
+          <Property Name="City_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="City_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Ads" Relationship="Self.FK_tbl_Ads_tbl_City" FromRole="tbl_City" ToRole="tbl_Ads" />
+        </EntityType>
+        <EntityType Name="tbl_Color">
+          <Key>
+            <PropertyRef Name="Color_id" />
+          </Key>
+          <Property Name="Color_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Color_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Ads" Relationship="Self.FK_tbl_Ads_tbl_Color" FromRole="tbl_Color" ToRole="tbl_Ads" />
+        </EntityType>
+        <EntityType Name="tbl_Make">
+          <Key>
+            <PropertyRef Name="Make_id" />
+          </Key>
+          <Property Name="Make_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Make_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Ads" Relationship="Self.FK_tbl_Ads_tbl_make" FromRole="tbl_Make" ToRole="tbl_Ads" />
+          <NavigationProperty Name="tbl_Model" Relationship="Self.FK_tbl_Model_tbl_make" FromRole="tbl_Make" ToRole="tbl_Model" />
+        </EntityType>
+        <EntityType Name="tbl_Model">
+          <Key>
+            <PropertyRef Name="Model_id" />
+          </Key>
+          <Property Name="Model_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Model_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Make_id" Type="Int32" />
+          <NavigationProperty Name="tbl_Ads" Relationship="Self.FK_tbl_Ads_tbl_Model" FromRole="tbl_Model" ToRole="tbl_Ads" />
+          <NavigationProperty Name="tbl_Make" Relationship="Self.FK_tbl_Model_tbl_make" FromRole="tbl_Model" ToRole="tbl_Make" />
+        </EntityType>
+        <EntityType Name="tbl_Reg_city">
+          <Key>
+            <PropertyRef Name="Reg_city_id" />
+          </Key>
+          <Property Name="Reg_city_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Reg_city_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Ads" Relationship="Self.FK_tbl_Ads_tbl_Reg_city" FromRole="tbl_Reg_city" ToRole="tbl_Ads" />
+        </EntityType>
+        <EntityType Name="tbl_User">
+          <Key>
+            <PropertyRef Name="User_id" />
+          </Key>
+          <Property Name="User_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Contact" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="User_active" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="tbl_Ads" Relationship="Self.FK_tbl_Ads_tbl_User" FromRole="tbl_User" ToRole="tbl_Ads" />
+          <Property Name="User_role" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_tbl_Ads_tbl_Category">
+          <End Role="tbl_Category" Type="Self.tbl_Category" Multiplicity="0..1" />
+          <End Role="tbl_Ads" Type="Self.tbl_Ads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Category">
+              <PropertyRef Name="Category_id" />
+            </Principal>
+            <Dependent Role="tbl_Ads">
+              <PropertyRef Name="Category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Ads_tbl_City">
+          <End Role="tbl_City" Type="Self.tbl_City" Multiplicity="0..1" />
+          <End Role="tbl_Ads" Type="Self.tbl_Ads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_City">
+              <PropertyRef Name="City_id" />
+            </Principal>
+            <Dependent Role="tbl_Ads">
+              <PropertyRef Name="City_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Ads_tbl_Color">
+          <End Role="tbl_Color" Type="Self.tbl_Color" Multiplicity="0..1" />
+          <End Role="tbl_Ads" Type="Self.tbl_Ads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Color">
+              <PropertyRef Name="Color_id" />
+            </Principal>
+            <Dependent Role="tbl_Ads">
+              <PropertyRef Name="Color_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Ads_tbl_make">
+          <End Role="tbl_Make" Type="Self.tbl_Make" Multiplicity="0..1" />
+          <End Role="tbl_Ads" Type="Self.tbl_Ads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Make">
+              <PropertyRef Name="Make_id" />
+            </Principal>
+            <Dependent Role="tbl_Ads">
+              <PropertyRef Name="Make_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Ads_tbl_Model">
+          <End Role="tbl_Model" Type="Self.tbl_Model" Multiplicity="0..1" />
+          <End Role="tbl_Ads" Type="Self.tbl_Ads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Model">
+              <PropertyRef Name="Model_id" />
+            </Principal>
+            <Dependent Role="tbl_Ads">
+              <PropertyRef Name="Model_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Ads_tbl_Reg_city">
+          <End Role="tbl_Reg_city" Type="Self.tbl_Reg_city" Multiplicity="0..1" />
+          <End Role="tbl_Ads" Type="Self.tbl_Ads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Reg_city">
+              <PropertyRef Name="Reg_city_id" />
+            </Principal>
+            <Dependent Role="tbl_Ads">
+              <PropertyRef Name="Reg_city_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Ads_tbl_User">
+          <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1" />
+          <End Role="tbl_Ads" Type="Self.tbl_Ads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_User">
+              <PropertyRef Name="User_id" />
+            </Principal>
+            <Dependent Role="tbl_Ads">
+              <PropertyRef Name="User_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Model_tbl_make">
+          <End Role="tbl_Make" Type="Self.tbl_Make" Multiplicity="0..1" />
+          <End Role="tbl_Model" Type="Self.tbl_Model" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Make">
+              <PropertyRef Name="Make_id" />
+            </Principal>
+            <Dependent Role="tbl_Model">
+              <PropertyRef Name="Make_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="XwheelsDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="tbl_Admin" EntityType="Self.tbl_Admin" />
+          <EntitySet Name="tbl_Ads" EntityType="Self.tbl_Ads" />
+          <EntitySet Name="tbl_Category" EntityType="Self.tbl_Category" />
+          <EntitySet Name="tbl_City" EntityType="Self.tbl_City" />
+          <EntitySet Name="tbl_Color" EntityType="Self.tbl_Color" />
+          <EntitySet Name="tbl_Make" EntityType="Self.tbl_Make" />
+          <EntitySet Name="tbl_Model" EntityType="Self.tbl_Model" />
+          <EntitySet Name="tbl_Reg_city" EntityType="Self.tbl_Reg_city" />
+          <EntitySet Name="tbl_User" EntityType="Self.tbl_User" />
+          <AssociationSet Name="FK_tbl_Ads_tbl_Category" Association="Self.FK_tbl_Ads_tbl_Category">
+            <End Role="tbl_Category" EntitySet="tbl_Category" />
+            <End Role="tbl_Ads" EntitySet="tbl_Ads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Ads_tbl_City" Association="Self.FK_tbl_Ads_tbl_City">
+            <End Role="tbl_City" EntitySet="tbl_City" />
+            <End Role="tbl_Ads" EntitySet="tbl_Ads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Ads_tbl_Color" Association="Self.FK_tbl_Ads_tbl_Color">
+            <End Role="tbl_Color" EntitySet="tbl_Color" />
+            <End Role="tbl_Ads" EntitySet="tbl_Ads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Ads_tbl_make" Association="Self.FK_tbl_Ads_tbl_make">
+            <End Role="tbl_Make" EntitySet="tbl_Make" />
+            <End Role="tbl_Ads" EntitySet="tbl_Ads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Ads_tbl_Model" Association="Self.FK_tbl_Ads_tbl_Model">
+            <End Role="tbl_Model" EntitySet="tbl_Model" />
+            <End Role="tbl_Ads" EntitySet="tbl_Ads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Ads_tbl_Reg_city" Association="Self.FK_tbl_Ads_tbl_Reg_city">
+            <End Role="tbl_Reg_city" EntitySet="tbl_Reg_city" />
+            <End Role="tbl_Ads" EntitySet="tbl_Ads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Ads_tbl_User" Association="Self.FK_tbl_Ads_tbl_User">
+            <End Role="tbl_User" EntitySet="tbl_User" />
+            <End Role="tbl_Ads" EntitySet="tbl_Ads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Model_tbl_make" Association="Self.FK_tbl_Model_tbl_make">
+            <End Role="tbl_Make" EntitySet="tbl_Make" />
+            <End Role="tbl_Model" EntitySet="tbl_Model" />
+          </AssociationSet>
+          <EntitySet Name="tbl_Year" EntityType="XwheelsModel.tbl_Year" />
+          <AssociationSet Name="FK_tbl_Ads_tbl_Year" Association="XwheelsModel.FK_tbl_Ads_tbl_Year">
+            <End Role="tbl_Year" EntitySet="tbl_Year" />
+            <End Role="tbl_Ads" EntitySet="tbl_Ads" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tbl_Year">
+          <Key>
+            <PropertyRef Name="Year_id" />
+          </Key>
+          <Property Name="Year_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Year_digits" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="tbl_Ads" Relationship="XwheelsModel.FK_tbl_Ads_tbl_Year" FromRole="tbl_Year" ToRole="tbl_Ads" />
+        </EntityType>
+        <Association Name="FK_tbl_Ads_tbl_Year">
+          <End Type="XwheelsModel.tbl_Year" Role="tbl_Year" Multiplicity="0..1" />
+          <End Type="XwheelsModel.tbl_Ads" Role="tbl_Ads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Year">
+              <PropertyRef Name="Year_id" />
+            </Principal>
+            <Dependent Role="tbl_Ads">
+              <PropertyRef Name="Year_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="XwheelsModelStoreContainer" CdmEntityContainer="XwheelsDBEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="XwheelsModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Admin">
+            <EntityTypeMapping TypeName="XwheelsModel.tbl_Admin">
+              <MappingFragment StoreEntitySet="tbl_Admin">
+                <ScalarProperty Name="Admin_role" ColumnName="Admin_role" />
+                <ScalarProperty Name="Admin_id" ColumnName="Admin_id" />
+                <ScalarProperty Name="Admin_name" ColumnName="Admin_name" />
+                <ScalarProperty Name="Admin_email" ColumnName="Admin_email" />
+                <ScalarProperty Name="Admin_password" ColumnName="Admin_password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Ads">
+            <EntityTypeMapping TypeName="XwheelsModel.tbl_Ads">
+              <MappingFragment StoreEntitySet="tbl_Ads">
+                <ScalarProperty Name="Vehicle_title" ColumnName="Vehicle_title" />
+                <ScalarProperty Name="Year_id" ColumnName="Year_id" />
+                <ScalarProperty Name="Image_Path_6" ColumnName="Image_Path_6" />
+                <ScalarProperty Name="Image_Path_5" ColumnName="Image_Path_5" />
+                <ScalarProperty Name="Image_Path_4" ColumnName="Image_Path_4" />
+                <ScalarProperty Name="Image_Path_3" ColumnName="Image_Path_3" />
+                <ScalarProperty Name="Image_Path_2" ColumnName="Image_Path_2" />
+                <ScalarProperty Name="Image_Path_1" ColumnName="Image_Path_1" />
+                <ScalarProperty Name="Vehicle_id" ColumnName="Vehicle_id" />
+                <ScalarProperty Name="Make_id" ColumnName="Make_id" />
+                <ScalarProperty Name="Model_id" ColumnName="Model_id" />
+                <ScalarProperty Name="Category_id" ColumnName="Category_id" />
+                <ScalarProperty Name="Reg_city_id" ColumnName="Reg_city_id" />
+                <ScalarProperty Name="Color_id" ColumnName="Color_id" />
+                <ScalarProperty Name="City_id" ColumnName="City_id" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Mileage" ColumnName="Mileage" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="User_id" ColumnName="User_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Category">
+            <EntityTypeMapping TypeName="XwheelsModel.tbl_Category">
+              <MappingFragment StoreEntitySet="tbl_Category">
+                <ScalarProperty Name="Category_id" ColumnName="Category_id" />
+                <ScalarProperty Name="Category_name" ColumnName="Category_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_City">
+            <EntityTypeMapping TypeName="XwheelsModel.tbl_City">
+              <MappingFragment StoreEntitySet="tbl_City">
+                <ScalarProperty Name="City_id" ColumnName="City_id" />
+                <ScalarProperty Name="City_name" ColumnName="City_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Color">
+            <EntityTypeMapping TypeName="XwheelsModel.tbl_Color">
+              <MappingFragment StoreEntitySet="tbl_Color">
+                <ScalarProperty Name="Color_id" ColumnName="Color_id" />
+                <ScalarProperty Name="Color_name" ColumnName="Color_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Make">
+            <EntityTypeMapping TypeName="XwheelsModel.tbl_Make">
+              <MappingFragment StoreEntitySet="tbl_Make">
+                <ScalarProperty Name="Make_id" ColumnName="Make_id" />
+                <ScalarProperty Name="Make_name" ColumnName="Make_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Model">
+            <EntityTypeMapping TypeName="XwheelsModel.tbl_Model">
+              <MappingFragment StoreEntitySet="tbl_Model">
+                <ScalarProperty Name="Model_id" ColumnName="Model_id" />
+                <ScalarProperty Name="Model_name" ColumnName="Model_name" />
+                <ScalarProperty Name="Make_id" ColumnName="Make_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Reg_city">
+            <EntityTypeMapping TypeName="XwheelsModel.tbl_Reg_city">
+              <MappingFragment StoreEntitySet="tbl_Reg_city">
+                <ScalarProperty Name="Reg_city_id" ColumnName="Reg_city_id" />
+                <ScalarProperty Name="Reg_city_name" ColumnName="Reg_city_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_User">
+            <EntityTypeMapping TypeName="XwheelsModel.tbl_User">
+              <MappingFragment StoreEntitySet="tbl_User">
+                <ScalarProperty Name="User_role" ColumnName="User_role" />
+                <ScalarProperty Name="User_id" ColumnName="User_id" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="User_active" ColumnName="User_active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Year">
+            <EntityTypeMapping TypeName="XwheelsModel.tbl_Year">
+              <MappingFragment StoreEntitySet="tbl_Year">
+                <ScalarProperty Name="Year_digits" ColumnName="Year_digits" />
+                <ScalarProperty Name="Year_id" ColumnName="Year_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

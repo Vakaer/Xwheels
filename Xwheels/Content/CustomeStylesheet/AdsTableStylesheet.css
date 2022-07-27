@@ -1,0 +1,39 @@
+﻿
+table {
+    display: block;
+    overflow-x: auto;
+    overflow-y:auto;
+    overflow:scroll;
+    white-space: nowrap;
+    max-height:600px;
+
+}
+thead{
+    
+  text-align:center;
+
+}
+a{
+    color:#fff;
+}
+.table-bordered{
+    border:none;
+}
+table thead tbody{
+    display: table;
+    width: 100%;
+    
+}
+.table_wrapper {
+    display: block;
+     overflow-x: auto;
+    overflow-y:auto;
+    overflow:scroll;
+    white-space: nowrap;
+    height:100vh;
+}
+.create-cat{
+    position: absolute;
+    right: 2%;
+    margin-top: -55px;
+}

@@ -1,0 +1,432 @@
+﻿@model Xwheels.tbl_Ads
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <link href="~/Content/CustomeStylesheet/PostAdStylesheet.css" rel="stylesheet" />
+</head>
+
+
+
+<div class="container wrapping-border outline " style="margin:8% auto;">
+
+
+    <div class="col-md-12">
+        <div class="main-heading border-bottom">
+            <h3><strong>Post an Ad</strong></h3>
+        </div>
+    </div>
+
+    @using (Html.BeginForm("Create", "Try", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <section class="basic-detail bb col-md-12">
+            <div class="form-horizontal col-md-11">
+                <h4 class="text-uppercase"><strong>include some Details</strong></h4>
+
+                <div class="">
+                    <div class="">
+                        <div class="">
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Make_id, "Make_id", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("Make_id", Model.Make as SelectList, "-- Select Make --", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Make_id, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Model_id, "Model_id", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("Model_id", Model.Model, "-- Select Model --", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Model_id, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Category_id, "Category_id", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("Category_id", Model.Category, "-- Select Category --", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Category_id, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Yearr, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("Year", Model.Yearr,"Select", new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                                    @Html.ValidationMessageFor(model => model.Yearr, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Reg_city_id, "Reg_city_id", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("Reg_city_id", Model.RegCity, "-- Select Registration City --", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Reg_city_id, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Color_id, "Color_id", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("Color_id", Model.Color, "-- Select Color --", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Color_id, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.City_id, "City_id", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("City_id", Model.City, "-- Select City --", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.City_id, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Mileage, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Mileage, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Mileage, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.Status)
+                                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.User_id, "User_id", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("User_id", Model.User, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.User_id, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+
+
+
+                            @*<div class="col-md-4 upload-image">
+                                    <input type="file" class="hidden" id="file-upload-1" accept="image/*" name="UserImageFile" />
+
+                                    <div class="upload-image-1" onclick=" myPop('.upload-image-1', '#file-upload-1')">
+                                        <img src="~/Content/images/download.png" class="img-responsive" id="img" width="100%" height="auto" />
+                                    </div>
+
+                                    <div class="remove-icon">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </div>
+                                </div>*@
+
+
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Create" class="btn btn-default" />
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+            <!--//Image Section starts-->
+
+            <section class="images bb col-md-12">
+                <div class="form-horizontal col-md-11 m-auto">
+
+                    <h4 class="text-uppercase"><strong>Upload uptop 5 images</strong></h4>
+                    <div class="col-md-12 ">
+                        <div class="row">
+                            <div class="col-md-12 ">
+
+                                <div class="col-sm-3 mb-2 sub-image">
+                                    <input type="file" class="hidden" id="fileUpload1" accept="image/*" name="UserImageFile[0]" />
+                                    @*remove icon*@
+                                    <div style="position:absolute; left:6%;" class="border pd-1 remove-photo" id="remove1">
+                                        <span class="fa fa-remove"></span>
+                                    </div>
+                                    <div class="u-img-1" id="u-img-1">
+                                        <img src="~/Content/images/download.png" id="UserImage1" class="img-thumbnail" />
+                                    </div>
+
+
+                                </div>
+
+                                <div class="col-sm-3 mb-2 sub-image">
+                                    <input type="file" class="hidden" id="fileUpload2" accept="image/*" name="UserImageFile[1]" />
+                                    @*remove icon*@
+                                    <div style="position:absolute; left:6%;" class="border pd-1 remove-photo" id="remove2">
+                                        <span class="fa fa-remove"></span>
+                                    </div>
+                                    <div class="u-img-2" id="u-img-2">
+                                        <img src="~/Content/images/download.png" id="UserImage" class="img-thumbnail" />
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3 mb-2 sub-image">
+                                    <input type="file" class="hidden" id="fileUpload3" accept="image/*" name="UserImageFile[2]" />
+                                    @*remove icon*@
+                                    <div style="position:absolute; left:6%;" class="border pd-1 remove-photo" id="remove3">
+                                        <span class="fa fa-remove"></span>
+                                    </div>
+                                    <div class="u-img-3" id="u-img-3">
+                                        <img src="~/Content/images/download.png" id="UserImage" class="img-thumbnail" />
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3 mb-2 sub-image ">
+                                    <input type="file" class="hidden" id="fileUpload4" accept="image/*" name="UserImageFile[3]" />
+                                    @*remove icon*@
+                                    <div style="position:absolute; left:6%;" class="border pd-1 remove-photo" id="remove4">
+                                        <span class="fa fa-remove"></span>
+                                    </div>
+                                    <div class="u-img-4" id="u-img-4">
+                                        <img src="~/Content/images/download.png" id="UserImage" class="img-thumbnail" />
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3 mb-2 sub-image">
+                                    <input type="file" class="hidden" id="fileUpload5" accept="image/*" name="UserImageFile[4]" />
+                                    @*remove icon*@
+                                    <div style="position:absolute; left:6%;" class="border pd-1 remove-photo" id="remove5">
+                                        <span class="fa fa-remove"></span>
+                                    </div>
+                                    <div class="u-img-5" id="u-img-5">
+                                        <img src="~/Content/images/download.png" id="UserImage" class="img-thumbnail" />
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3 mb-2 sub-image">
+                                    <input type="file" class="hidden" id="fileUpload6" accept="image/*" name="UserImageFile[5]" />
+                                    @*remove icon*@
+                                    <div style="position:absolute; left:6%;" class="border pd-1 remove-photo" id="remove6">
+                                        <span class="fa fa-remove"></span>
+                                    </div>
+                                    <div class="u-img-6" id="u-img-6">
+                                        <img src="~/Content/images/download.png" id="UserImage" class="img-thumbnail" />
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="clrr"></div>
+
+
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </section><br /><br />
+
+
+
+
+            <!--//Image Section Ends-->
+
+
+            <!--//Submit Section Starts-->
+            <section class="border-bottom col-md-2 col-md-offset-10">
+                <button type="submit" class="btn btn-dark">Save changes</button>
+
+            </section>
+
+            <!--//Submit Section Ends-->
+
+
+    }
+</div>
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<script type="text/javascript">
+
+
+    //open browse image popup on window
+    $('#u-img-1, #u-img-2, #u-img-3, #u-img-4, #u-img-5, #u-img-6').click(function () {
+
+        var openn = $(this).attr('id');
+        var fileOpen;
+
+        // conditions for opening different files
+        if (openn == 'u-img-1') {
+            fileOpen = '#fileUpload1';
+
+        } else if (openn == 'u-img-2') {
+            fileOpen = '#fileUpload2';
+
+        } else if (openn == 'u-img-3') {
+            fileOpen = '#fileUpload3';
+
+        } else if (openn == 'u-img-4') {
+            fileOpen = '#fileUpload4';
+
+        } else if (openn == 'u-img-5') {
+            fileOpen = '#fileUpload5';
+
+        } else if (openn == 'u-img-6') {
+            fileOpen = '#fileUpload6';
+
+        }
+
+        //Triggering respective file tag
+        $(fileOpen).trigger('click');
+
+    });
+
+
+
+
+    //select and upload
+    $('#fileUpload1, #fileUpload2, #fileUpload3, #fileUpload4, #fileUpload5, #fileUpload6').change(function () {
+
+        name = '.u-img-1 img';
+
+        var input = $(this).attr('id');
+        //var input = $('#fileUpload2').data('clicked');
+
+
+        if (input == 'fileUpload1') {
+            name = '.u-img-1 img';
+
+        } else if (input == 'fileUpload2') {
+            name = '.u-img-2 img';
+
+        } else if (input == 'fileUpload3') {
+            name = '.u-img-3 img';
+
+        } else if (input == 'fileUpload4') {
+            name = '.u-img-4 img';
+
+        } else if (input == 'fileUpload5') {
+            name = '.u-img-5 img';
+
+        } else if (input == 'fileUpload6') {
+            name = '.u-img-6 img';
+
+        }
+        // Preview images
+        var File = this.files;
+
+        if (File && File[0]) {
+
+            var fileReader = new FileReader();
+            fileReader.readAsDataURL(File[0]);
+
+            fileReader.onload = function (x) {
+
+                var image = new Image();
+                image.src = x.target.result;
+
+                image.onload = function () {
+
+                    var width = this.width;
+                    var height = this.height;
+                    var type = File[0].type;
+                    // alert(width + " x " + height + " type: " + type);
+
+                    //if ((width == '1600' && height == '1200') && (type == 'image/png' || type == 'image/jpg' || type == 'image/jpeg')) {
+
+                    //    $('.upload-image-1 img').attr('src', x.target.result);
+                    //} else {
+                    //    alert("Size should be 1600 x 1200");
+                    //}
+
+
+                    $(name).attr('src', x.target.result);
+
+                }
+
+
+
+
+            }
+        }
+
+    });
+
+    // remove picture
+    $('#remove1, #remove2, #remove3, #remove4, #remove5, #remove6').click(function () {
+
+        var rem = $(this).attr('id');
+        var img;
+
+        if (rem == 'remove1') {
+            img = '.u-img-1 img';
+            $('#Image_Path_1').val('~/Content/images/download.png');
+
+        } else if (rem == 'remove2') {
+            img = '.u-img-2 img';
+            $('#Image_Path_2').val('~/Content/images/download.png');
+
+
+        } else if (rem == 'remove3') {
+            img = '.u-img-3 img';
+            $('#Image_Path_3').val('~/Content/images/download.png');
+
+
+        } else if (rem == 'remove4') {
+            img = '.u-img-4 img';
+            $('#Image_Path_4').val('~/Content/images/download.png');
+
+
+        } else if (rem == 'remove5') {
+            img = '.u-img-5 img';
+            $('#Image_Path_5').val('~/Content/images/download.png');
+
+
+        } else if (rem == 'remove6') {
+            img = '.u-img-6 img';
+            $('#Image_Path_6').val('~/Content/images/download.png');
+
+
+        }
+
+        //change image
+        $(img).attr('src', '/Content/images/download.png');
+
+
+
+    });
+</script>
+

@@ -1,0 +1,121 @@
+﻿@model IEnumerable<Xwheels.tbl_Model>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<head>
+    <link href="~/Content/CustomeStylesheet/VehicleCategory/ListStyleSheet.css" rel="stylesheet" />
+</head>
+
+<h2 class="bg-gradient-olive p-2" style="border-radius:8px 8px 0px 0px;">Vehicle Models</h2>
+
+<p class="create-cat">
+    @Html.ActionLink("Add Model", "Create", "Model", new { @class = "btn btn-light text-success", @style = "color:white;" })
+</p>
+
+
+<table class="table table-bordered table-hover bg-white text-center">
+    <tr>
+        
+        <th>
+            <label>Make</label>
+        </th>
+        <th>
+            <label>Model</label>
+        </th>
+        <th>
+            <label>Actions</label>
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_Make.Make_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Model_name)
+        </td>
+        <td class="text-left">
+            @Html.ActionLink("Edit", "Edit", new { id=item.Model_id }, new { @class = "btn btn-warning text-white" }) |
+            
+            @Html.ActionLink("Delete", "Delete", new { id=item.Model_id }, new { @class = "btn btn-danger text-white", onclick="return confirmDel()" })
+        </td>
+    </tr>
+}
+
+</table>
+
+<div class="" style="padding:0 0 0 20%">
+    @{
+        double TotalPages = ViewBag.TotalPages;
+        if (TotalPages > 1)
+        {
+            <ul class="pagination">
+
+                @* /////////////////////////////Prevoius////////////////////////// *@
+
+
+                @if (ViewBag.PageNumber == 1)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("Index","Model", new { PageNumber= ViewBag.PageNumber})">Previous</a>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a class="page-link" href="@Url.Action("Index","Model", new { PageNumber= ViewBag.PageNumber - 1})">Previous</a>
+                    </li>
+                }
+
+                @* /////////////////////////////Pages////////////////////////// *@
+
+                @for (int i = 1; i <= TotalPages; i++)
+                {
+                    if (i == ViewBag.PageNumber)
+                    {
+                        <li class="page-item active">
+                            <a class="page-link" href="@Url.Action("Index","Model", new { PageNumber= i})">@i.ToString()</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="@Url.Action("Index","Model", new { PageNumber= i})">@i.ToString()</a>
+                        </li>
+                    }
+                }
+
+                @* /////////////////////////////Next////////////////////////// *@
+
+
+                @if (ViewBag.PageNumber == TotalPages)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("Index","Model", new { PageNumber= ViewBag.PageNumber})">Next</a>
+                    </li>
+
+                }
+                else
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("Index","Model", new { PageNumber= ViewBag.PageNumber + 1})">Next</a>
+                    </li>
+
+                }
+
+            </ul>
+        }
+
+
+    }
+
+</div>
+<script>
+     function confirmDel(){
+         return confirm("Are you sure, you want to delete this Vehicle Model?");
+    }
+</script>

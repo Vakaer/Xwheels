@@ -1,0 +1,55 @@
+﻿@model Xwheels.tbl_Category
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@if (TempData["CategoryMsg"] != null)
+{
+    <div class="well">
+        <h3>@TempData["CategoryMsg"].ToString() </h3>
+    </div>
+}
+
+
+@using (Html.BeginForm("Create", "Vehicle", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <div>
+            
+            <h4 class="bg-gradient-olive p-2" style="border-radius:8px 8px 0px 0px;">Add Category</h4>
+
+        </div> 
+
+        
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="border">
+
+
+            <div class="form-group">
+                @Html.Label("Category Name:", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Category_name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Category_name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-success" /> | 
+                    @Html.ActionLink("Back","List","Vehicle", new { @class="btn btn-danger"})
+                    
+                    <br /><br /
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+
+

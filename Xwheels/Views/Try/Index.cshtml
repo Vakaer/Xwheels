@@ -1,0 +1,197 @@
+﻿@model IEnumerable<Xwheels.tbl_Ads>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+
+    <link href="~/Content/CustomeStylesheet/MainPageStyleSheet.css" rel="stylesheet" />
+
+</head>
+
+<div class="col-md-12 col-sm-12">
+
+
+    <div class="container" style="margin-top:40px;">
+        <div class="row">
+
+
+@using (Html.BeginForm("Index", "Try", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+                <!--Search starts-->
+               <div class="row justify-content-center" style="display:flex; margin-bottom:25px;">
+                   <div class="input-group col-md-offset-2 col-md-8">
+                       <input type="text" class="form-control" placeholder="Search" name="myQuery">
+                       <div class="input-group-btn">
+                           <button class="btn btn-light" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                       </div>
+                   </div>
+               </div>
+                <!--Search Ends-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-inline justify-content-between" style=" margin:auto; display:flex">
+
+                        @Html.DropDownList("Make_id", ViewBag.Make as SelectList, "Make", new { @class = "form-control col-md-12", @id="Make_id" })
+                        @Html.DropDownList("Model_id", ViewBag.Model as SelectList, "Model", new { @class = "form-control col-md-12" })
+                        @Html.DropDownList("Year_id", ViewBag.myYearr as SelectList, "Year", htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownList("Category_id", ViewBag.Category as SelectList, "Category", htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownList("Reg_city_id", ViewBag.RegCity as SelectList, "Reg City", htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownList("Color_id", ViewBag.Color as SelectList, "Color", htmlAttributes: new { @class = "form-control" })
+                        
+                        <input type="submit" name="submitLists" value="Find" class="btn btn-success" style="margin-left:1%;" />
+                    </div>
+                </div>
+            </div>
+                
+}
+        </div>
+    </div>
+    <hr style="border:1px solid rgb(233, 233, 233);" />
+
+   
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <!--Search error message starts-->
+            @{
+                if (TempData["SearchError"] != null || TempData["SearchError2"] != null)
+                {
+                    <div class="container" style="margin-top:10px;">
+                        <div class="row">
+                            <div class="text-center">
+                                <h1>@TempData["SearchError"].ToString()</h1>
+                                <p>@TempData["SearchError2"].ToString()</p>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                }
+            }
+            <!--Search error message ends-->
+
+
+            @using (@Html.BeginForm("Index", "Try", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+
+
+
+                foreach (var item in Model)
+                {
+                    <a href="@Url.Action("Details","Try" ,new { id = item.Vehicle_id})" target="_blank">
+                            <div class="card col-3 col-md-3">
+
+                            <div class="im ">
+                                @if (item.Image_Path_1 == null)
+                                {
+                                    item.Image_Path_1 = "~/Content/images/download.png";
+                                }
+                                <img src="@Url.Content(item.Image_Path_1)" width="80%;" height="200px" />
+                            </div>
+                            <div class="ad-details" style="height:150px;">
+                                <h5 class="title">@Html.DisplayFor(modelItem => item.tbl_Make.Make_name) @Html.DisplayFor(modelItem => item.tbl_Model.Model_name)</h5>
+                                <h4 class="price"><strong>@Html.DisplayFor(modelItem => item.Price) Rs</strong></h4>
+                                <span class="Mileage">@Html.DisplayFor(modelItem => item.Mileage) Km  </span>|<span>  @Html.DisplayFor(model =>item.tbl_Year.Year_digits)</span><br /><br />
+                                <span class="location">@Html.DisplayFor(modelItem => item.tbl_City.City_name)</span>
+                            </div>
+                        </div>
+                    </a>
+                }
+            }
+            </div>
+            <div class="" style="padding:0 0 0 40%">
+                @{
+                    double TotalPages = ViewBag.TotalPages;
+                    if (TotalPages > 1)
+                    {
+                        <ul class="pagination">
+
+                            @* /////////////////////////////Prevoius////////////////////////// *@
+
+
+                            @if (ViewBag.PageNumber == 1)
+                            {
+                                <li>@Html.ActionLink("Previous", "Index", new { PageNumber = ViewBag.PageNumber })</li>
+                            }
+                            else
+                            {
+                                <li>@Html.ActionLink("Previous", "Index", new { PageNumber = ViewBag.PageNumber - 1 })</li>
+
+                            }
+
+                            @* /////////////////////////////Pages////////////////////////// *@
+
+                            @for (int i = 1; i <= TotalPages; i++)
+                            {
+                                if (i == ViewBag.PageNumber)
+                                {
+                                    <li class="active">
+                                        @Html.ActionLink(i.ToString(), "Index", new { PageNumber = i })
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        @Html.ActionLink(i.ToString(), "Index", new { PageNumber = i })
+                                    </li>
+                                }
+                            }
+
+                            @* /////////////////////////////Next////////////////////////// *@
+
+
+                            @if (ViewBag.PageNumber == TotalPages)
+                            {
+                                <li>@Html.ActionLink("Next", "Index", new { PageNumber = ViewBag.PageNumber })</li>
+
+                            }
+                            else
+                            {
+                                <li>@Html.ActionLink("Next", "Index", new { PageNumber = ViewBag.PageNumber + 1 })</li>
+
+                            }
+
+                        </ul>
+                    }
+
+
+                }
+                
+            </div>
+           
+
+
+
+
+        
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        
+        $("#Make_id").change(function () {
+            var Mid = $(this).val(); 
+            debugger
+            $.ajax({
+                type: "post",
+                url: "/Try/GetModelList?Make_id=" + Mid,
+                contentType: "html",
+                success: function (response) {
+                    debugger
+                    $("#Model_id").empty();
+                    $("#Model_id").append(response);
+                }
+            })
+        })
+    })
+</script>

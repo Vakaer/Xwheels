@@ -1,0 +1,203 @@
+﻿@model Xwheels.tbl_Ads
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/CustomeStylesheet/specificAd.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+    <div class="logo">
+        <img src="~/Content/images/fyp logo.png" class="img-responsive" />
+    </div>
+
+    <div class="container" style=" margin-top:20px;">
+        <div class="row">
+            <div class="col-md-8">
+                <h2>@Html.DisplayFor(model => model.Vehicle_title)</h2>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="row">
+            <!--image carousel-->
+            <div class="col-md-8">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        @if (Model.Image_Path_2 != null)
+                        {
+                            <li data-target="#myCarousel" data-slide-to="1"></li>
+                        }
+                        @if (Model.Image_Path_3 != null)
+                        {
+                            <li data-target="#myCarousel" data-slide-to="2"></li>
+                        }
+                        @if (Model.Image_Path_4 != null)
+                        {
+                            <li data-target="#myCarousel" data-slide-to="3"></li>
+                        }
+                        @if (Model.Image_Path_5 != null)
+                        {
+                            <li data-target="#myCarousel" data-slide-to="4"></li>
+                        }
+                        @if (Model.Image_Path_6 != null)
+                        {
+                            <li data-target="#myCarousel" data-slide-to="5"></li>
+                        }
+
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+
+                        @if (Model.Image_Path_1 != null)
+                        {
+                            <div class="item active">
+                                <img src="@Url.Content(Model.Image_Path_1)" alt="Los Angeles" style="width:100%; height:500px;">
+                            </div>
+                        }
+
+                        @if (Model.Image_Path_2 != null)
+                        {
+                            <div class="item">
+                                <img src="@Url.Content(Model.Image_Path_2)" alt="Los Angeles" style="width:100%; height:500px;">
+                            </div>
+                        }
+                        @if (Model.Image_Path_3 != null)
+                        {
+                            <div class="item">
+                                <img src="@Url.Content(Model.Image_Path_3)" alt="Los Angeles" style="width:100%; height:500px;">
+                            </div>
+                        }
+                        @if (Model.Image_Path_4 != null)
+                        {
+                            <div class="item">
+                                <img src="@Url.Content(Model.Image_Path_4)" alt="Los Angeles" style="width:100%; height:500px;">
+                            </div>
+                        }
+                        @if (Model.Image_Path_5 != null)
+                        {
+                            <div class="item">
+                                <img src="@Url.Content(Model.Image_Path_5)" alt="Los Angeles" style="width:100%; height:500px;">
+                            </div>
+                        }
+                        @if (Model.Image_Path_6 != null)
+                        {
+                            <div class="item">
+                                <img src="@Url.Content(Model.Image_Path_6)" alt="Los Angeles" style="width:100%; height:500px;">
+                            </div>
+                        }
+
+                    </div>
+
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+            <!--image carousel ends-->
+
+            <div class="col-md-4  ">
+                <div class="col-md-12 bor rad">
+                    <h2><strong>@Html.DisplayFor(model => model.tbl_Make.Make_name) @Html.DisplayFor(model => model.tbl_Model.Model_name)</strong></h2>
+                    |  <span>@Html.DisplayFor(model => model.tbl_Year.Year_digits)</span> |
+                    <h4 class="">RS. @Html.DisplayFor(model => model.Price)</h4>
+                    <span>@Html.DisplayFor(model => model.tbl_City.City_name)</span>
+                </div>
+                <div class="col-md-12 bor rad" style="margin-top:20px;">
+                    <h4 class="price">Seller description</h4>
+                    <a href="">Name: @Html.DisplayFor(model => model.tbl_User.Username)</a><br /><br />
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <a class="btn btn-default btn-block" href="@Url.Action("login","User")">Show contact details</a><br />
+                    }
+                    @if (User.Identity.IsAuthenticated)
+                    {
+
+                        <p class="text-center"><i class="glyphicon glyphicon-phone"></i> <span class="phone">@Html.DisplayFor(model => model.tbl_User.Contact)</span></p>
+                    }
+                </div>
+
+            </div>
+        </div><br />
+        <div class="row">
+            <div class="table-wrapper col-md-12 bor ">
+                <table class="table table-responsive table-striped">
+                    <caption class="" style="font-size:2rem; padding:10px 0px;">Details</caption>
+                    <tr>
+                        <th>Make</th>
+                        <td>@Html.DisplayFor(model => model.tbl_Make.Make_name)</td>
+                        <th>Model</th>
+                        <td>@Html.DisplayFor(model => model.tbl_Model.Model_name)</td>
+                    </tr>
+                    <tr>
+                        <th>Year</th>
+                        <td>@Html.DisplayFor(model => model.tbl_Year.Year_digits)</td>
+                        <th>Price</th>
+                        <td>RS. @Html.DisplayFor(model => model.Price)</td>
+                    </tr>
+                    <tr>
+                        <th>Registeration City</th>
+                        <td>@Html.DisplayFor(model => model.tbl_Reg_city.Reg_city_name)</td>
+                        <th>Mileage</th>
+                        <td>@Html.DisplayFor(model => model.Mileage) KM</td>
+                    </tr>
+
+
+                    <tr>
+                        <th>Color</th>
+                        <td>@Html.DisplayFor(model => model.tbl_Color.Color_name)</td>
+                        <th>Location</th>
+                        <td>@Html.DisplayFor(model => model.tbl_City.City_name)</td>
+                    </tr>
+                    <tr>
+                        <th>Category</th>
+                        <td>@Html.DisplayFor(model => model.tbl_Category.Category_name)</td>
+                        <th></th>
+                        <td></td>
+                    </tr>
+                </table>
+                <hr />
+                <div class="col-md-12 bor">
+                    <h4><strong>Description</strong></h4>
+                    <p class="text-justify">
+                        @Html.DisplayFor(model => model.Description)
+                    </p>
+                </div>
+                <br />
+            </div>
+        </div>
+        <br /><br />
+    </div>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $('.phone').click(function () {
+            $('.phone').text("0300-0000000").fadeIn();
+        })
+    });
+
+    </script>
+</body>
+</html>

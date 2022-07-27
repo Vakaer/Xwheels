@@ -1,0 +1,52 @@
+﻿
+.border{
+    border:1px solid rgba(214,222,222,1);
+    height:98vh;
+    
+    max-width:70%;
+    margin:auto;
+    margin-top:100px;
+    margin-bottom:30px;
+}
+
+.pad-5{
+    padding:15px 15px;
+    
+}
+.heading{
+    padding:5px;
+    border-bottom: 1px solid #808080;
+    margin-bottom:25px;
+}
+hr.new1{
+    border-bottom: 1px solid #808080;
+    width:100%;
+}
+.information strong{
+    font-size:16px;
+    
+}
+.information{
+    line-height:1.5;
+    font-size:13px;
+    justify-content:center;
+    border:1px solid rgba(214,222,222,1);
+    padding:15px;
+    border-radius:10px;
+}
+.txtarea{
+    position:relative;
+    top:-100px;
+    left:60px;
+}
+textarea{
+    width:88%;
+    height:150px;
+    border:1px solid rgba(214,222,222,1);
+}
+.conatct-info{
+    margin:50px 0;
+}
+.vcenter {
+   margin-top:-1%;
+}

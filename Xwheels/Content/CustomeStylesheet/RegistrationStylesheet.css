@@ -1,0 +1,71 @@
+﻿body {
+
+    padding-bottom: 0px;
+    font-family: 'Lato', sans-serif;
+font-family: 'Montserrat', sans-serif;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+ 
+}
+
+
+.fa-custom{
+    
+    font-size: 20px;
+    
+}
+.Innersection{
+    width: 70%;
+    height:500px;
+    box-shadow: 4px 4px 20px -3px rgba(0,0,0,0.95);
+    -webkit-box-shadow: 4px 4px 20px -3px rgba(0,0,0,0.95);
+    -moz-box-shadow: 4px 4px 20px -3px rgba(0,0,0,0.95);
+    background-color:#ffffff;
+    margin:50px auto;
+    border-radius:20px 20px 0px 0px;
+    
+}
+.form-wrapper{
+    padding: 25px 50px;
+}
+.Outersection{
+    background-image: linear-gradient(to right,#30c5d2,#471069);
+    padding-top:50px;
+    height:98vh;
+}
+
+
+.reg{
+    /*background-image: linear-gradient(to right,#432371,#faae7b);*/
+    background-color:#001d3d;
+    color:#ffffff;
+    font-family:'Montserrat', sans-serif;
+    padding:8px;
+    border-radius:20px 20px 0px 0px;
+}
+.left-section{
+    max-height:280px;
+    
+}
+.borderr{
+    border-left: 1px solid #d9d9d9;
+    height:100%;
+
+}
+.left-section img{
+    width:80%;
+    margin:auto;
+}
+.right-section{
+    height:280px;
+}

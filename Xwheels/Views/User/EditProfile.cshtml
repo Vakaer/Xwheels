@@ -1,0 +1,93 @@
+﻿@model Xwheels.tbl_User
+
+@{
+    ViewBag.Title = "EditProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <link href="~/Content/CustomeStylesheet/EditProfileStylesheet.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+</head>
+
+<section class="container border">
+
+    @if (ViewBag.EditProfile != null)
+    {
+        @ViewBag.EditProfile;
+    }
+
+    @using (Html.BeginForm("EditProfile", "User", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <div class="heading new1">
+                <h3><strong>Edit Profile</strong></h3>
+            </div>
+           
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.User_id)
+            <section class="basic-info">
+                <h5 class="pad-5"><strong>Basic Info</strong></h5>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="information col-md-4">
+                        <strong class="h"><span class="fa fa-lightbulb-o fa-2x"></span>  Why is it important?</strong>
+                        <p style="color:#a4a2a2">
+                            <strong>X</strong>wheels is built on trust. Help other people get to know you.
+                            Tell them about the cars you like. Share your vehicle details.
+                            And you will see the results…
+                        </p>
+                    </div>
+                    
+                </div>
+                
+            </section>
+
+            <hr class="new1"/>
+            <section class="conatct-info">
+                <h5 class="pad-5"><strong>Contact Info</strong></h5>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @if (ViewBag.email != null)
+                        {
+                            <span class="text-danger">@ViewBag.email</span>
+                        }
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                    <span class="col-md-6">We won't reveal your email to anyone else nor use it to send you spam</span>
+                </div>
+                @Html.HiddenFor(model => model.Password)
+                @Html.HiddenFor(model => model.User_active)
+                @Html.HiddenFor(model => model.User_role)
+                @Html.HiddenFor(model => model.TempContact)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Contact, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.Contact, new { htmlAttributes = new { @class = "form-control" } })
+                        @if (ViewBag.num != null)
+                        {
+                            <span class="text-danger">@ViewBag.num</span>
+                        }
+                        @Html.ValidationMessageFor(model => model.Contact, "", new { @class = "text-danger" })
+                    </div>
+                    <span class="col-md-6">This is the number for buyers contacts, reminders, and other notifications.</span>
+                </div>
+            </section>
+            <hr class="new1" />
+            <div class="form-group">
+                <div class="col-md-offset-9 col-md-3 vcenter">
+                    <input type="submit" value="Save Changes" class="btn btn-success btn-lg" />
+                    
+                </div>
+            </div>
+        </div>
+    }
+</section>

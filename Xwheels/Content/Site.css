@@ -1,0 +1,46 @@
+﻿body {
+    padding-top: 30px;
+    padding-bottom: 0px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+/*.fa-custom{
+    padding-top:8px;
+    font-size: 20px;
+    
+}
+.Innersection{
+    width: 90%;
+    box-shadow: 4px 4px 20px -3px rgba(0,0,0,0.95);
+    -webkit-box-shadow: 4px 4px 20px -3px rgba(0,0,0,0.95);
+    -moz-box-shadow: 4px 4px 20px -3px rgba(0,0,0,0.95);
+    background-color:#ffffff;
+    margin:50px auto;
+    padding:40px;
+}
+.Outersection{
+    background-image: linear-gradient(to right,#432371,#faae7b);
+    padding-top:50px;
+    height:98vh;
+}
+.reg{
+    background-image: linear-gradient(to right,#432371,#faae7b);
+    color:#ffffff;
+    font-family:'Montserrat', sans-serif;
+}
+.left-section{
+    border-right: 1px solid #d9d9d9;
+}*/

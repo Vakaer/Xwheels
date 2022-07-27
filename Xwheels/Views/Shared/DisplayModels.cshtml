@@ -1,0 +1,11 @@
+﻿@model Xwheels.tbl_Ads
+
+<option value="">Models</option>
+@if (ViewBag.ModelList != null)
+{
+    foreach (var item in ViewBag.ModelList)
+    {
+        <option value="@item.Value">@item.Text</option>
+    }
+}
+
